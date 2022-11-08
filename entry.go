@@ -19,14 +19,7 @@ func main() {
 	headersOk := gorillaHandlers.AllowedHeaders([]string{"X-Requested-With", "Authorization", "Content-Type"})
 	originsOk := gorillaHandlers.AllowedOrigins([]string{"*"})
 	methodsOk := gorillaHandlers.AllowedMethods([]string{http.MethodGet})
-
-	sTest := "mystring"
-	rTest := ""
-	for i := 0; i < len(sTest); i++ {
-		rTest = string(sTest[i]) + rTest
-	}
-	fmt.Println(rTest)
-
+	
 	http.ListenAndServe(":8080", gorillaHandlers.CORS(originsOk, headersOk, methodsOk)(router))
 }
 
